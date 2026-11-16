@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ffffff 0%, #ffe6f0 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+h1 {
+    color: #d63384;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 45px;
+    text-shadow: 2px 4px 10px rgba(214, 51, 132, 0.15);
+    letter-spacing: 0.5px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.game-card {
+    background-color: #ffffff;
+    border: 3px solid #ffb3d9;
+    border-radius: 24px;
+    height: 240px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #d63384;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.3;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.12);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff85c0, #ffadd6);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #ff66b2;
+    box-shadow: 0 15px 35px rgba(255, 102, 178, 0.28);
+    background-color: #fff5f9;
+    color: #b81d6a;
+}
+
+.game-card:hover::after {
+    opacity: 1;
+}
+
+.bottom-block {
+    margin-top: 50px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 2px dashed #ffb3d9;
+    border-radius: 20px;
+}
+
+.code-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff66b2, #ff85c0);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding: 14px 32px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(255, 102, 178, 0.3);
+    transition: all 0.3s ease;
+}
+
+.code-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 102, 178, 0.45);
+    background: linear-gradient(90deg, #e64d98, #ff66b2);
+}
+
+.top-nav {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #d63384;
+    border: 2px solid #ffb3d9;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 10px 22px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #ffe6f0;
+    border-color: #ff66b2;
+    transform: translateX(-4px);
+}
+
+.info-box,
+.code-section {
+    background-color: #ffffff;
+    border: 3px solid #ffb3d9;
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.1);
+}
+
+.info-box p {
+    color: #555555;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+.code-section h2 {
+    color: #d63384;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffe6f0;
+    padding-bottom: 10px;
+}
+
+.tag-list {
+    list-style: none;
+}
+
+.tag-list li {
+    font-size: 1.1rem;
+    color: #444444;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+code {
+    background-color: #fff0f6;
+    color: #c2185b;
+    border: 1px solid #ffc2df;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.start-btn {
+    background: linear-gradient(90deg, #ff66b2, #ff85c0);
+    color: #ffffff;
+    border: none;
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 22px 60px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(255, 102, 178, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.start-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 16px 40px rgba(255, 102, 178, 0.5);
+    background: linear-gradient(90deg, #e64d98, #ff66b2);
+}
+
+.start-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.console-box {
+    background-color: #ffffff;
+    border: 3px solid #ffb3d9;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 700px;
+    height: 420px;
+    margin: 0 auto;
+    padding: 25px;
+    text-align: left;
+    overflow-y: auto;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.15);
+}
+
+.log-line {
+    font-size: 1.15rem;
+    color: #444444;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    background-color: #fff5f9;
+    border-left: 4px solid #ff66b2;
+    border-radius: 8px;
+    animation: fadeIn 0.25s ease;
+}
+
+/* Блок з кодом гри, який не можна змінювати */
+.source-code-block {
+    background-color: #ffffff;
+    border: 3px solid #ffb3d9;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 700px;
+    margin: 45px auto 0 auto;
+    padding: 25px;
+    text-align: left;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.12);
+}
+
+.source-code-block h2 {
+    color: #d63384;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.readonly-code {
+    width: 100%;
+    height: 320px;
+    background-color: #fff5f9;
+    color: #880e4f;
+    border: 2px solid #ffc2df;
+    border-radius: 16px;
+    padding: 18px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    cursor: text;
+}
+
+.readonly-code::-webkit-scrollbar {
+    width: 10px;
+}
+
+.readonly-code::-webkit-scrollbar-track {
+    background: #ffe6f0;
+    border-radius: 10px;
+}
+
+.readonly-code::-webkit-scrollbar-thumb {
+    background: #ff85c0;
+    border-radius: 10px;
+}
+
+.readonly-code::-webkit-scrollbar-thumb:hover {
+    background: #ff66b2;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 850px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 2.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-card {
+        height: 180px;
+    }
+
+    .info-box,
+    .code-section {
+        padding: 20px;
+    }
+}

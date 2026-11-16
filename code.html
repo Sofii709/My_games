@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простий код — Шпаргалка</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-nav">
+            <a href="index.html" class="back-btn">← Назад до ігор</a>
+        </div>
+
+        <h1>Як працює код сайту</h1>
+        <div class="info-box">
+            <p>Будь-який вебсайт або браузерна міні-гра складається з трьох головних технологій. Вони працюють разом як команда:</p>
+            <p><strong>HTML</strong> будує скелет сторінки, <strong>CSS</strong> додає красу та кольори, а <strong>JavaScript</strong> змушує все рухатися та реагувати на кліки.</p>
+        </div>
+
+        <div class="code-section">
+            <h2>1. Базові теги HTML (Структура)</h2>
+            <ul class="tag-list">
+                <li><code>&lt;!DOCTYPE html&gt;</code> — повідомляє браузеру, що це сучасна вебсторінка.</li>
+                <li><code>&lt;html&gt;</code> — головний контейнер, всередині якого лежить весь код сайту.</li>
+                <li><code>&lt;head&gt;</code> — прихована частина для налаштувань, шрифтів та назви вкладки.</li>
+                <li><code>&lt;body&gt;</code> — видима частина сторінки, яку бачить користувач на екрані.</li>
+                <li><code>&lt;h1&gt; ... &lt;h6&gt;</code> — заголовки різних розмірів (від найбільшого до найменшого).</li>
+                <li><code>&lt;p&gt;</code> — звичайний текстовий абзац.</li>
+                <li><code>&lt;div&gt;</code> — універсальний блок-коробка для групування елементів.</li>
+                <li><code>&lt;a href="..."&gt;</code> — посилання для переходу на іншу сторінку або гру.</li>
+                <li><code>&lt;button&gt;</code> — інтерактивна кнопка для натискання.</li>
+                <li><code>&lt;img src="..."&gt;</code> — тег для вставки картинок.</li>
+            </ul>
+        </div>
+
+        <div class="code-section">
+            <h2>2. Базові властивості CSS (Дизайн)</h2>
+            <ul class="tag-list">
+                <li><code>color</code> — змінює колір тексту (наприклад, рожевий).</li>
+                <li><code>background</code> — задає колір фону або плавний градієнт.</li>
+                <li><code>font-size</code> — встановлює розмір літер.</li>
+                <li><code>width / height</code> — задає ширину та висоту блоку чи картки.</li>
+                <li><code>margin</code> — зовнішній відступ (відштовхує сусідні елементи).</li>
+                <li><code>padding</code> — внутрішній відступ (створює простір всередині блоку).</li>
+                <li><code>border</code> — малює рамку навколо елемента.</li>
+                <li><code>border-radius</code> — заокруглює кути блоків та кнопок.</li>
+                <li><code>display: flex / grid</code> — сучасні способи вирівнювання карток у ряд чи сітку.</li>
+                <li><code>:hover</code> — задає вигляд елемента, коли на нього наводять мишкою.</li>
+            </ul>
+        </div>
+
+        <div class="code-section">
+            <h2>3. Базові основи JavaScript (Логіка та ігри)</h2>
+            <ul class="tag-list">
+                <li><code>&lt;script&gt;</code> — тег, у якому пишеться або підключається JS-код.</li>
+                <li><code>let / const</code> — створення змінних для збереження даних (наприклад, рахунку в грі).</li>
+                <li><code>function ім'я() { }</code> — блок коду, який виконує певну дію (наприклад, стрибок персонажа).</li>
+                <li><code>document.querySelector()</code> — знаходить потрібний HTML-елемент на сторінці.</li>
+                <li><code>addEventListener('click', ...)</code> — відстежує дії гравця (кліки мишкою, натискання клавіш).</li>
+                <li><code>if / else</code> — перевірка умов (якщо гравець торкнувся ворога — гра закінчена).</li>
+                <li><code>Math.random()</code> — генерує випадкові числа (потрібно для появи бонусів чи ворогів).</li>
+                <li><code>setInterval()</code> — запускає дію по колу через кожні кілька мілісекунд (ігровий цикл).</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

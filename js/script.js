@@ -1,0 +1,191 @@
+function printLog(text) {
+    const consoleBox = document.getElementById('gameConsole');
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    line.textContent = text;
+    consoleBox.appendChild(line);
+    
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+}
+
+function rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+class Car {
+    constructor(props) {
+        this.brand = props.brand;
+        this.fuelType = props.fuelType;
+        this.tankCapacity = props.tankCapacity;
+        this.transmission = props.transmission;
+        this.wheels = props.wheels;
+        this.type = props.type;
+        this.fuel = rand(0, 10);
+        this.key = true;
+        this.acomulator = rand(0, 100);
+        this.drive = true;
+        this.timerId = null;
+    }
+
+    askRefuel() {
+        let amount;
+        while (true) {
+            amount = prompt("Скільки літрів палива ви хочете залити?");
+            if (amount === null) break;
+            if (amount !== "" && !isNaN(amount) && Number(amount) > 0) break;
+        }
+
+        if (amount !== null) {
+            let litersToFill = parseInt(amount);
+            if (this.fuel + litersToFill > this.tankCapacity) {
+                litersToFill = this.tankCapacity - this.fuel;
+                if (litersToFill <= 0) {
+                    printLog("Бак уже повний (макс. " + this.tankCapacity + "л)");
+                    this.checkStatus();
+                    return;
+                }
+                printLog(`Обмеження баку. Буде залито лише ${litersToFill}л до повного баку.`);
+            }
+            printLog(`Починаємо заправку... Треба залити ${litersToFill}л.`);
+            if (this.timerId) this.stop();
+            let refuelTimer = setInterval(() => {
+                this.fuel += 1;
+                litersToFill -= 1;
+                printLog(`⛽ Заправка... +1л (Поточний рівень: ${this.fuel}л)`);
+                if (litersToFill <= 0) {
+                    clearInterval(refuelTimer);
+                    printLog(`✅ Заправку завершено. Всього палива: ${this.fuel}л`);
+                    this.checkStatus();
+                }
+            }, 500);
+        } else {
+            printLog("❌ Заправку скасовано. Машина не може їхати.");
+        }
+    }
+
+    askCharge() {
+        printLog("⚡ Акумулятор заряджається автоматично під час руху.");
+    }
+
+    checkStatus() {
+        let errorsCount = 0;
+        if (this.fuel == 0) {
+            printLog("⚠️ Нема палива");
+            errorsCount++;
+            this.askRefuel();
+            return;
+        } else if (this.fuel <= 4) {
+            printLog("⚠️ Треба долити паливо, у вас " + this.fuel + "л");
+            this.askRefuel();
+            return;
+        }
+        if (this.acomulator == 0) {
+            printLog("⚠️ Розряджений акумулятор");
+            errorsCount++;
+            this.askCharge();
+            return;
+        } else if (this.acomulator <= 40) {
+            printLog("⚠️ Треба підзарядити акумулятор, у вас " + this.acomulator + "%");
+            this.askCharge();
+        }
+        if (!this.key) {
+            printLog("🔑 Треба повернути ключ");
+            let turnKey = confirm("Повернути ключ запалювання?");
+            if (turnKey) {
+                this.key = true;
+                printLog("Ключ повернуто");
+            } else {
+                errorsCount++;
+            }
+        }
+        if (!this.drive) {
+            printLog("⚙️ Треба переключити режим їзди");
+            let switchDrive = confirm("Увімкнути режим їзди?");
+            if (switchDrive) {
+                this.drive = true;
+                printLog("Режим їзди увімкнено");
+            } else {
+                errorsCount++;
+            }
+        }
+        if (errorsCount == 0) {
+            let question = "У вас " + this.fuel + "л палива та " + this.acomulator + "% заряду акумулятора. Бажаєте їхати?";
+            let userAnswer = confirm(question);
+            if (!userAnswer) {
+                printLog("🛑 Поїздку скасовано користувачем.");
+                this.stop();
+            } else {
+                printLog("🚀 Поїхали!");
+                this.startMoving();
+            }
+        } else {
+            printLog("🚫 Авто не може їхати через технічні причини.");
+        }
+    }
+
+    startMoving() {
+        if (this.timerId) return;
+        this.timerId = setInterval(() => {
+            this.fuel -= 1;
+            this.acomulator += 5;
+            if (this.acomulator > 100) {
+                this.acomulator = 100;
+            }
+            printLog(`🚗 Їдемо... Паливо: ${this.fuel}л | Акумулятор: ${this.acomulator}%`);
+            if (this.fuel <= 0) {
+                this.fuel = 0;
+                printLog("🛑 Паливо закінчилось. Зупинка.");
+                this.stop();
+                this.checkStatus();
+            }
+        }, 500);
+    }
+
+    stop() {
+        clearInterval(this.timerId);
+        this.timerId = null;
+    }
+}
+
+function startGame() {
+    document.getElementById('startBtn').style.display = 'none';
+    const consoleBox = document.getElementById('gameConsole');
+    consoleBox.style.display = 'block';
+    consoleBox.innerHTML = '';
+
+    const tesla = new Car({
+        brand: "Tesla Model S",
+        fuelType: "electricity",
+        tankCapacity: 100,
+        transmission: "automatic",
+        wheels: 4,
+        type: "passenger"
+    });
+
+    const ducati = new Car({
+        brand: "Ducati Monster",
+        fuelType: "petrol",
+        tankCapacity: 15,
+        transmission: "manual",
+        wheels: 2,
+        type: "motorcycle"
+    });
+
+    const manTruck = new Car({
+        brand: "MAN TGX",
+        fuelType: "diesel",
+        tankCapacity: 400,
+        transmission: "automatic",
+        wheels: 6,
+        type: "truck"
+    });
+
+    const garage = [tesla, ducati, manTruck];
+    const randomCar = garage[rand(0, garage.length - 1)];
+
+    printLog("🚘 Автоматично обрано: " + randomCar.brand);
+    
+    setTimeout(() => {
+        randomCar.checkStatus();
+    }, 300);
+}
